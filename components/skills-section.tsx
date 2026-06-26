@@ -84,7 +84,7 @@ function usePngDataUrl(svgUrl: string) {
 
 function Ball({ pngUrl }: { pngUrl: string }) {
   const [decal] = useTexture([pngUrl]);
-  const meshRef = useRef<any>();
+  const meshRef = useRef<any>(null);
 
   useFrame((_, delta) => {
     if (meshRef.current) meshRef.current.rotation.y += delta * 0.4;
