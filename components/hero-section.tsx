@@ -24,17 +24,21 @@ export function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center min-h-[calc(100vh-5rem)]"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-5rem)]"
         >
-          <div className="flex flex-col xl:flex-row items-center justify-between gap-8">
-            <motion.div variants={itemVariants} className="flex items-center gap-3 justify-center lg:justify-start">
+          {/* Colonne gauche — toujours verticale */}
+          <div className="flex flex-col items-center lg:items-start gap-8">
+            <motion.div variants={itemVariants} className="flex items-center gap-3">
               <span className="w-7 h-[1.5px] bg-cyan-400" />
               <span className="text-xs font-semibold tracking-[.14em] uppercase text-cyan-400">
                 {t('hero.eyebrow')}
               </span>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl md:text-7xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white">
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white text-center lg:text-left"
+            >
               {t('hero.heading1')}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-500">
                 scalable
@@ -42,11 +46,14 @@ export function HeroSection() {
               <br />{t('hero.heading2')}
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-base md:text-lg text-slate-400 max-w-md mx-auto lg:mx-0 leading-relaxed">
+            <motion.p
+              variants={itemVariants}
+              className="text-base md:text-lg text-slate-400 max-w-md leading-relaxed text-center lg:text-left"
+            >
               {t('hero.description')}
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3">
               <motion.a
                 href="/resume" target="_blank" rel="noopener noreferrer"
                 className="px-7 py-3 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400 hover:text-slate-950 transition-all text-sm text-center"
@@ -63,7 +70,7 @@ export function HeroSection() {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="hidden lg:flex items-center gap-1.5 mt-4">
+            <motion.div variants={itemVariants} className="hidden lg:flex items-center gap-1.5">
               {[0, 0.2, 0.4].map((delay, i) => (
                 <motion.span key={i} className="w-1.5 h-1.5 rounded-full bg-cyan-400"
                   animate={{ y: [0, -6, 0], opacity: [0.3, 1, 0.3] }}
@@ -73,11 +80,13 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          <div className="w-full xl:w-1/2 h-[600px]">
-            <motion.div variants={itemVariants} className="order-1 lg:order-2 w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[calc(100vh-5rem)] max-h-[700px]">
-              <ComputersCanvas />
-            </motion.div>
-          </div>
+          {/* Colonne droite — canvas sans wrapper redondant */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+          >
+            <ComputersCanvas />
+          </motion.div>
         </motion.div>
       </div>
     </section>
